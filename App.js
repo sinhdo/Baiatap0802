@@ -1,12 +1,41 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Image, Button } from 'react-native';
+import ThongTin from './Screen/ThongTin';
+import QuanLy from './Screen/QuanLy';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+
+const Stack = createNativeStackNavigator();
+
+const Home = (props) => {
+  const nav = props.navigation;
+  return (<View>
+
+     
+
+
+    <View style={styles.btn}>
+      <Button title='Thông tin'
+        onPress={() => nav.navigate('ThongTin')}
+      />
     </View>
+  </View>)
+}
+
+
+const App = () => {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName='Home'>
+        <Stack.Screen
+          name='QuanLy' component={QuanLy} />
+        <Stack.Screen
+          name='Home' component={Home} />
+        <Stack.Screen
+          name='ThongTin' component={ThongTin} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
@@ -17,4 +46,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  
+  btn:{
+    alignContent:'center',
+    justifyContent:'center',
+    width:390,
+    padding:15,
+    paddingBottom:15,
+    
+  }
 });
+export default App;
